@@ -20,6 +20,12 @@ dependencies:
     "@t3-oss/env-core":
         specifier: ^0.6.1
         version: 0.6.1(typescript@5.2.2)(zod@3.22.2)
+    "@tanstack/react-query":
+        specifier: ^4.35.0
+        version: 4.35.0(react-dom@18.2.0)(react@18.2.0)
+    "@tanstack/react-query-devtools":
+        specifier: ^4.35.0
+        version: 4.35.0(@tanstack/react-query@4.35.0)(react-dom@18.2.0)(react@18.2.0)
     "@types/node":
         specifier: 20.5.6
         version: 20.5.6
@@ -32,6 +38,9 @@ dependencies:
     autoprefixer:
         specifier: 10.4.15
         version: 10.4.15(postcss@8.4.28)
+    axios:
+        specifier: ^1.5.0
+        version: 1.5.0
     class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -938,6 +947,62 @@ packages:
             zod: 3.22.2
         dev: false
 
+    /@tanstack/match-sorter-utils@8.8.4:
+        resolution:
+            {
+                integrity: sha512-rKH8LjZiszWEvmi01NR72QWZ8m4xmXre0OOwlRGnjU01Eqz/QnN+cqpty2PJ0efHblq09+KilvyR7lsbzmXVEw==,
+            }
+        engines: { node: ">=12" }
+        dependencies:
+            remove-accents: 0.4.2
+        dev: false
+
+    /@tanstack/query-core@4.35.0:
+        resolution:
+            {
+                integrity: sha512-4GMcKQuLZQi6RFBiBZNsLhl+hQGYScRZ5ZoVq8QAzfqz9M7vcGin/2YdSESwl7WaV+Qzsb5CZOAbMBes4lNTnA==,
+            }
+        dev: false
+
+    /@tanstack/react-query-devtools@4.35.0(@tanstack/react-query@4.35.0)(react-dom@18.2.0)(react@18.2.0):
+        resolution:
+            {
+                integrity: sha512-tzN0K70idRsqnfLdUcQC3eCrv28kLIAB6/H1zsGdIw7Wmj5VgTxPmpEVc3rHQjKt0LZsvZTLmaLnI6FCI3VUZw==,
+            }
+        peerDependencies:
+            "@tanstack/react-query": ^4.35.0
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+            react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+        dependencies:
+            "@tanstack/match-sorter-utils": 8.8.4
+            "@tanstack/react-query": 4.35.0(react-dom@18.2.0)(react@18.2.0)
+            react: 18.2.0
+            react-dom: 18.2.0(react@18.2.0)
+            superjson: 1.13.1
+            use-sync-external-store: 1.2.0(react@18.2.0)
+        dev: false
+
+    /@tanstack/react-query@4.35.0(react-dom@18.2.0)(react@18.2.0):
+        resolution:
+            {
+                integrity: sha512-LLYDNnM9ewYHgjm2rzhk4KG/puN2rdoqCUD+N9+V7SwlsYwJk5ypX58rpkoZAhFyZ+KmFUJ7Iv2lIEOoUqydIg==,
+            }
+        peerDependencies:
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+            react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+            react-native: "*"
+        peerDependenciesMeta:
+            react-dom:
+                optional: true
+            react-native:
+                optional: true
+        dependencies:
+            "@tanstack/query-core": 4.35.0
+            react: 18.2.0
+            react-dom: 18.2.0(react@18.2.0)
+            use-sync-external-store: 1.2.0(react@18.2.0)
+        dev: false
+
     /@types/minimatch@3.0.5:
         resolution:
             {
@@ -1055,6 +1120,13 @@ packages:
         engines: { node: ">=8" }
         dev: false
 
+    /asynckit@0.4.0:
+        resolution:
+            {
+                integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==,
+            }
+        dev: false
+
     /autoprefixer@10.4.15(postcss@8.4.28):
         resolution:
             {
@@ -1072,6 +1144,19 @@ packages:
             picocolors: 1.0.0
             postcss: 8.4.28
             postcss-value-parser: 4.2.0
+        dev: false
+
+    /axios@1.5.0:
+        resolution:
+            {
+                integrity: sha512-D4DdjDo5CY50Qms0qGQTTw6Q44jl7zRwY7bthds06pUGfChBCTcQs+N743eFWGEd6pRTMd6A+I87aWyFV5wiZQ==,
+            }
+        dependencies:
+            follow-redirects: 1.15.2
+            form-data: 4.0.0
+            proxy-from-env: 1.1.0
+        transitivePeerDependencies:
+            - debug
         dev: false
 
     /balanced-match@1.0.2:
@@ -1218,6 +1303,16 @@ packages:
             }
         dev: false
 
+    /combined-stream@1.0.8:
+        resolution:
+            {
+                integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==,
+            }
+        engines: { node: ">= 0.8" }
+        dependencies:
+            delayed-stream: 1.0.0
+        dev: false
+
     /commander@4.1.1:
         resolution:
             {
@@ -1231,6 +1326,16 @@ packages:
             {
                 integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==,
             }
+        dev: false
+
+    /copy-anything@3.0.5:
+        resolution:
+            {
+                integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==,
+            }
+        engines: { node: ">=12.13" }
+        dependencies:
+            is-what: 4.1.15
         dev: false
 
     /cross-spawn@7.0.3:
@@ -1259,6 +1364,14 @@ packages:
             {
                 integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==,
             }
+        dev: false
+
+    /delayed-stream@1.0.0:
+        resolution:
+            {
+                integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==,
+            }
+        engines: { node: ">=0.4.0" }
         dev: false
 
     /detect-node-es@1.1.0:
@@ -1366,6 +1479,31 @@ packages:
         dependencies:
             locate-path: 5.0.0
             path-exists: 4.0.0
+        dev: false
+
+    /follow-redirects@1.15.2:
+        resolution:
+            {
+                integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==,
+            }
+        engines: { node: ">=4.0" }
+        peerDependencies:
+            debug: "*"
+        peerDependenciesMeta:
+            debug:
+                optional: true
+        dev: false
+
+    /form-data@4.0.0:
+        resolution:
+            {
+                integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==,
+            }
+        engines: { node: ">= 6" }
+        dependencies:
+            asynckit: 0.4.0
+            combined-stream: 1.0.8
+            mime-types: 2.1.35
         dev: false
 
     /fraction.js@4.2.1:
@@ -1588,6 +1726,14 @@ packages:
         engines: { node: ">=8" }
         dev: false
 
+    /is-what@4.1.15:
+        resolution:
+            {
+                integrity: sha512-uKua1wfy3Yt+YqsD6mTUEa2zSi3G1oPlqTflgaPJ7z63vUGN5pxFpnQfeSLMFnJDEsdvOtkp1rUWkYjB4YfhgA==,
+            }
+        engines: { node: ">=12.13" }
+        dev: false
+
     /isexe@2.0.0:
         resolution:
             {
@@ -1669,6 +1815,24 @@ packages:
         dependencies:
             braces: 3.0.2
             picomatch: 2.3.1
+        dev: false
+
+    /mime-db@1.52.0:
+        resolution:
+            {
+                integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==,
+            }
+        engines: { node: ">= 0.6" }
+        dev: false
+
+    /mime-types@2.1.35:
+        resolution:
+            {
+                integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==,
+            }
+        engines: { node: ">= 0.6" }
+        dependencies:
+            mime-db: 1.52.0
         dev: false
 
     /mimic-fn@2.1.0:
@@ -2088,6 +2252,13 @@ packages:
         dependencies:
             "@prisma/engines": 5.2.0
 
+    /proxy-from-env@1.1.0:
+        resolution:
+            {
+                integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==,
+            }
+        dev: false
+
     /pump@3.0.0:
         resolution:
             {
@@ -2215,6 +2386,13 @@ packages:
             }
         dev: false
 
+    /remove-accents@0.4.2:
+        resolution:
+            {
+                integrity: sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==,
+            }
+        dev: false
+
     /resolve@1.22.4:
         resolution:
             {
@@ -2337,6 +2515,16 @@ packages:
             mz: 2.7.0
             pirates: 4.0.6
             ts-interface-checker: 0.1.13
+        dev: false
+
+    /superjson@1.13.1:
+        resolution:
+            {
+                integrity: sha512-AVH2eknm9DEd3qvxM4Sq+LTCkSXE2ssfh1t11MHMXyYXFQyQ1HLgVvV+guLTsaQnJU3gnaVo34TohHPulY/wLg==,
+            }
+        engines: { node: ">=10" }
+        dependencies:
+            copy-anything: 3.0.5
         dev: false
 
     /supports-color@7.2.0:
@@ -2510,6 +2698,17 @@ packages:
             detect-node-es: 1.1.0
             react: 18.2.0
             tslib: 2.6.2
+        dev: false
+
+    /use-sync-external-store@1.2.0(react@18.2.0):
+        resolution:
+            {
+                integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==,
+            }
+        peerDependencies:
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+        dependencies:
+            react: 18.2.0
         dev: false
 
     /util-deprecate@1.0.2:
