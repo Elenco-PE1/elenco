@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "./ui/button"
-import { DialogHeader, DialogFooter, DialogContent, DialogDescription, DialogTitle } from "./ui/dialog"
+import { DialogFooter, DialogContent, DialogTitle } from "./ui/dialog"
 
 export const LogOutDialog = () => {
     return (
