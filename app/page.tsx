@@ -4,7 +4,7 @@ import { SideNavigationBar } from "@/components/side-navigation-bar";
 
 export default function Home() {
 	return (
-		<main className="bg-foreground text-secondary h-screen w-full flex flex-col">
+		<main className="bg-foreground text-secondary h-screen w-screen flex flex-col">
 			<SideNavigationBar />
 			<NavigationBar />
 			<FileExplorer />
