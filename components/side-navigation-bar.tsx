@@ -1,30 +1,35 @@
 "use client"
-import {ArrowRightOnRectangleIcon, Cog6ToothIcon, DocumentIcon, DocumentTextIcon, InformationCircleIcon, QuestionMarkCircleIcon} from '@heroicons/react/24/outline'
+import {ArrowRightOnRectangleIcon, Cog6ToothIcon, InformationCircleIcon, QuestionMarkCircleIcon, UserGroupIcon} from '@heroicons/react/24/outline'
 import { Menubar, MenubarMenu } from "./ui/side-menubar"
 import { Dialog, DialogTrigger } from './ui/dialog'
 import { LogOutDialog } from './log-out-dialog'
 import { SettingsBox } from './settings-box'
 import Link from 'next/link'
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet'
-import { useState } from 'react'
-import { set } from 'zod'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
 
 export const SideNavigationBar = () => {
-    const [sheetOpened, setSheetOpened] = useState<boolean>(false)
     return (
             <Menubar>
                 <MenubarMenu>
-                    <div className='group'>
-                        <DocumentIcon width={30} className="group-hover:hidden my-3 transition-all" />
-                        <DocumentTextIcon width={30} className="hidden group-hover:block my-3 transition-all" />
-                    </div>
+                    <Link href={'/'} className='my-1'>
+                        <UserGroupIcon width={24} className="my-3 transition-all hover:fill-secondary" />
+                    </Link>
                 </MenubarMenu>
 
                 <div className='flex flex-col gap-3'>
                     <MenubarMenu>
                         <Dialog>
                             <DialogTrigger>
-                                <ArrowRightOnRectangleIcon width={22} className="rotate-180 transition-all  hover:stroke-2 hover:cursor-pointer" />
+                                <TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <ArrowRightOnRectangleIcon width={22} className="rotate-180 transition-all  hover:stroke-2 hover:cursor-pointer" />
+                                        </TooltipTrigger>
+                                        <TooltipContent side='right'>
+                                        <p>Log Out</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
                             </DialogTrigger>
 
                             <LogOutDialog />  
@@ -32,21 +37,49 @@ export const SideNavigationBar = () => {
                     </MenubarMenu>
 
                     <MenubarMenu>
-                        <Link href={'/'}>
-                            <InformationCircleIcon width={22} className="transition-all hover:fill-secondary hover:stroke-primary hover:cursor-pointer" />
-                        </Link>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                <Link href={'/'}>
+                                    <InformationCircleIcon width={22} className="transition-all hover:fill-secondary hover:stroke-primary hover:cursor-pointer" />
+                                </Link>
+                                </TooltipTrigger>
+                                <TooltipContent side='right'>
+                                <p>Information Page</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>                        
                     </MenubarMenu>
 
                     <MenubarMenu>
-                        <Link href={'/'}>
-                            <QuestionMarkCircleIcon width={22} className="transition-all hover:fill-secondary hover:stroke-primary hover:cursor-pointer" />
-                        </Link>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                <Link href={'/'}>
+                                    <QuestionMarkCircleIcon width={22} className="transition-all hover:fill-secondary hover:stroke-primary hover:cursor-pointer" />
+                                </Link>
+                                </TooltipTrigger>
+                                <TooltipContent side='right'>
+                                <p>FAQs</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider> 
                     </MenubarMenu>
 
                     <MenubarMenu>
                         <Dialog>
                             <DialogTrigger>
-                                <Cog6ToothIcon width={22} className="transition-all hover:fill-secondary hover:stroke-primary focus:stroke-primary focus:fill-secondary hover:cursor-pointer" />
+                                <TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                        <Cog6ToothIcon width={22} className="transition-all hover:fill-secondary hover:stroke-primary focus:stroke-primary focus:fill-secondary hover:cursor-pointer" />
+                                        </TooltipTrigger>
+                                        <TooltipContent side='right'>
+                                        <p>Settings</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
+                                
                             </DialogTrigger>
 
                             <SettingsBox />
