@@ -8,7 +8,7 @@ import {
 } from "./ui/collapsible";
 import { Separator } from "./ui/separator";
 
-export const Folder = () => {
+export const Folder = ({value}: {value: number}) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const ar = [1, 2, 3, 4, 5, 6];
 
@@ -31,7 +31,7 @@ export const Folder = () => {
 					</Button>
 				</CollapsibleTrigger>
 				<h4 className="text-sm whitespace-nowrap font-semibold">
-					Team Documentation
+					Team Documentation {value}
 				</h4>
 			</div>
 			<CollapsibleContent className="transition-all">
