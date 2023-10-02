@@ -85,9 +85,9 @@ export const ShareDocument = () => {
 									key={id}
 								>
 									<div className="flex items-center space-x-2">
-										<Avatar>
+										<Avatar className="w-7 h-7">
 											<AvatarImage src="/avatars/03.png" />
-											<AvatarFallback>
+											<AvatarFallback className="text-xs">
 												{fallBack}
 											</AvatarFallback>
 										</Avatar>

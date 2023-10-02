@@ -44,7 +44,7 @@ export const CommentBox = () => {
 			<CardContent className="grid gap-4">
 				<ScrollArea className="h-[400px]">
 					<div className="grid gap-8">
-						<div className="grid gap-6">
+						<div className="grid gap-4">
 							{comments
 								.slice(0)
 								.reverse()
