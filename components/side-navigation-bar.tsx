@@ -17,17 +17,34 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "./ui/tooltip";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { ProfileBox } from "./profile-box";
 
 export const SideNavigationBar = () => {
 	return (
 		<Menubar>
 			<MenubarMenu>
-				<Link href={"/"} className="my-1">
-					<UserGroupIcon
-						width={24}
-						className="my-3 transition-all hover:fill-secondary"
-					/>
-				</Link>
+				<Dialog>
+					<DialogTrigger className="hover:cursor-default">
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Avatar className="h-6 w-6 my-4 hover:cursor-pointer">
+										<AvatarImage src="/avatars/01.png" />
+										<AvatarFallback className="bg-transparent border-2 text-xs font-semibold">
+											A
+										</AvatarFallback>
+									</Avatar>
+								</TooltipTrigger>
+								<TooltipContent className="mt-4" side="bottom">
+									<p>Profile</p>
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					</DialogTrigger>
+
+					<ProfileBox />
+				</Dialog>
 			</MenubarMenu>
 
 			<div className="flex flex-col gap-3">
