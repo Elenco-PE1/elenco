@@ -6,7 +6,6 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "./ui/collapsible";
-import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "./ui/separator";
 
 export const Folder = () => {
@@ -36,19 +35,17 @@ export const Folder = () => {
 				</h4>
 			</div>
 			<CollapsibleContent className="transition-all">
-				<ScrollArea>
-					{ar.map((value, id) => (
-						<div
-							className="transition-all flex h-7 items-center ml-6 space-x-2 text-sm"
-							key={id}
-						>
-							<Separator orientation="vertical" />
-							<p className="text-sm flex items-center rounded-sm w-full h-full pl-2 hover:bg-muted-foreground hover:cursor-pointer">
-								Document {value}
-							</p>
-						</div>
-					))}
-				</ScrollArea>
+				{ar.map((value, id) => (
+					<div
+						className="transition-all flex h-7 items-center ml-6 space-x-2 text-sm"
+						key={id}
+					>
+						<Separator orientation="vertical" />
+						<p className="text-sm flex items-center rounded-sm w-full h-full pl-2 hover:bg-muted-foreground hover:cursor-pointer">
+							Document {value}
+						</p>
+					</div>
+				))}
 			</CollapsibleContent>
 		</Collapsible>
 	);
