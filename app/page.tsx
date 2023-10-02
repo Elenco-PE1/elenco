@@ -1,3 +1,5 @@
+import { BreadcrumbsBar } from "@/components/breadcrumbs-bar";
+import { Editor } from "@/components/editor";
 import { FileExplorer } from "@/components/file-explorer";
 import { NavigationBar } from "@/components/navigation-bar";
 import { SideNavigationBar } from "@/components/side-navigation-bar";
@@ -9,7 +11,8 @@ export default function Home() {
 			<NavigationBar />
 			<FileExplorer />
 			<div className="absolute left-[260px] top-[64px] w-auto h-auto">
-				elenco
+				<BreadcrumbsBar />
+				<Editor />
 			</div>
 		</main>
 	);
