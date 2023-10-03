@@ -4,7 +4,6 @@ import {
 	Cog6ToothIcon,
 	InformationCircleIcon,
 	QuestionMarkCircleIcon,
-	UserGroupIcon,
 } from "@heroicons/react/24/outline";
 import { Menubar, MenubarMenu } from "./ui/side-menubar";
 import { Dialog, DialogTrigger } from "./ui/dialog";
@@ -19,8 +18,11 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ProfileBox } from "./profile-box";
+import { useSession } from "next-auth/react";
 
 export const SideNavigationBar = () => {
+	const { data, status } = useSession();
+
 	return (
 		<Menubar>
 			<MenubarMenu>
@@ -29,12 +31,18 @@ export const SideNavigationBar = () => {
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									<Avatar className="h-6 w-6 my-4 hover:cursor-pointer">
-										<AvatarImage src="/avatars/01.png" />
-										<AvatarFallback className="bg-transparent border-2 text-xs font-semibold">
-											A
-										</AvatarFallback>
-									</Avatar>
+									{status === "authenticated" &&
+										data.user && (
+											<Avatar className="h-6 w-6 my-4 hover:cursor-pointer">
+												<AvatarImage
+													src={data.user.image || ""}
+												/>
+												<AvatarFallback className="bg-transparent border-2 text-xs font-semibold">
+													{data.user.name &&
+														data.user.name[0]}
+												</AvatarFallback>
+											</Avatar>
+										)}
 								</TooltipTrigger>
 								<TooltipContent className="mt-4" side="bottom">
 									<p>Profile</p>

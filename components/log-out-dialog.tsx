@@ -1,4 +1,5 @@
 "use client";
+import { signOut } from "next-auth/react";
 import { Button } from "./ui/button";
 import { DialogFooter, DialogContent, DialogTitle } from "./ui/dialog";
 
@@ -9,7 +10,9 @@ export const LogOutDialog = () => {
 				Are you sure you want to log out?
 			</DialogTitle>
 			<DialogFooter>
-				<Button variant={"destructive"}>Log Out</Button>
+				<Button variant={"destructive"} onClick={() => signOut()}>
+					Log Out
+				</Button>
 			</DialogFooter>
 		</DialogContent>
 	);
