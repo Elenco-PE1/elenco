@@ -9,11 +9,11 @@ export const env = createEnv({
 	clientPrefix: "PUBLIC_",
 	server: {
 		DATABASE_URL: z.string().url(),
-		GOOGLE_CLIENT_ID: z.string(),
-		GOOGLE_CLIENT_SECRET: z.string(),
-		NEXTAUTH_SECRET: z.string(),
+		CLERK_SECRET_KEY: z.string().min(1),
 	},
-	client: {},
+	client: {
+		NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
+	},
 	/**
 	 * What object holds the environment variables at runtime.
 	 * Often `process.env` or `import.meta.env`

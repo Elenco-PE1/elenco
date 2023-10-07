@@ -1,20 +1,24 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useUser } from "@clerk/nextjs";
 import { DialogContent, DialogTitle, DialogDescription } from "./ui/dialog";
 
 export const ProfileBox = () => {
-	const { data, status } = useSession();
+	const { isSignedIn, isLoaded, user } = useUser();
 
-	if (status !== "authenticated" || !data.user) return null;
+	if (!isSignedIn || !isLoaded || !user) return null;
 
 	return (
 		<DialogContent className="flex flex-col items-center">
 			<DialogTitle className="text-center">
-				{data.user.name}'s Profile
+				{user.firstName}'s Profile
 			</DialogTitle>
 
-			<DialogDescription>{data.user.email}</DialogDescription>
+			{user.primaryEmailAddress && (
+				<DialogDescription>
+					{user.primaryEmailAddress.emailAddress}
+				</DialogDescription>
+			)}
 		</DialogContent>
 	);
 };

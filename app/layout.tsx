@@ -1,7 +1,7 @@
-import { AuthProvider } from "@/components/auth-provider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -20,9 +20,9 @@ export default async function RootLayout({
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<AuthProvider>
+			<ClerkProvider>
 				<body className={poppins.className}>{children}</body>
-			</AuthProvider>
+			</ClerkProvider>
 		</html>
 	);
 }

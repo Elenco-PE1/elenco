@@ -1,9 +1,11 @@
 "use client";
-import { signOut } from "next-auth/react";
+import { useAuth } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { DialogFooter, DialogContent, DialogTitle } from "./ui/dialog";
 
 export const LogOutDialog = () => {
+	const { signOut } = useAuth();
+
 	return (
 		<DialogContent className="flex flex-col items-center">
 			<DialogTitle className="text-center">
