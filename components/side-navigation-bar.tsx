@@ -18,11 +18,8 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ProfileBox } from "./profile-box";
-import { useSession } from "next-auth/react";
 
 export const SideNavigationBar = () => {
-	const { data, status } = useSession();
-
 	return (
 		<Menubar>
 			<MenubarMenu>
@@ -31,7 +28,7 @@ export const SideNavigationBar = () => {
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									{status === "authenticated" &&
+									{/* {status === "authenticated" &&
 										data.user && (
 											<Avatar className="h-6 w-6 my-4 hover:cursor-pointer">
 												<AvatarImage
@@ -42,7 +39,7 @@ export const SideNavigationBar = () => {
 														data.user.name[0]}
 												</AvatarFallback>
 											</Avatar>
-										)}
+										)} */}
 								</TooltipTrigger>
 								<TooltipContent className="mt-4" side="bottom">
 									<p>Profile</p>

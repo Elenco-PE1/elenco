@@ -1,4 +1,3 @@
-import { AuthProvider } from "@/components/auth-provider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
@@ -20,9 +19,7 @@ export default async function RootLayout({
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<AuthProvider>
-				<body className={poppins.className}>{children}</body>
-			</AuthProvider>
+			<body className={poppins.className}>{children}</body>
 		</html>
 	);
 }
