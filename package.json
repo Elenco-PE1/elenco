@@ -12,6 +12,7 @@
 		"format:check": "prettier --check ."
 	},
 	"dependencies": {
+		"@clerk/nextjs": "^4.25.3",
 		"@heroicons/react": "^2.0.18",
 		"@knocklabs/node": "^0.4.24",
 		"@prisma/client": "5.3.1",
