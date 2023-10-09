@@ -11,7 +11,7 @@ import {
 import { Squares2X2Icon } from "@heroicons/react/24/solid";
 import { Menubar, MenubarMenu } from "./ui/menubar";
 import { Input } from "./ui/input";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { TabsBox } from "./tabs-box";
 import { Toggle } from "./ui/toggle";
 import {
@@ -25,7 +25,7 @@ import { TeamDashboard } from "./team-dashboard";
 import { Popover, PopoverTrigger } from "./ui/popover";
 import { NotificationBox } from "./notification-box";
 
-export const NavigationBar = () => {
+export const NavigationBar = ({setCurrentTab, tabBox, settingTab}: {setCurrentTab: Dispatch<SetStateAction<number>>, tabBox: string[], settingTab: number[]}) => {
 	const [showSearch, setShowSearch] = useState(false);
 	const [showSheet, setShowSheet] = useState(false);
 	const [showFileExplorer, setShowFileExplorer] = useState(false);
@@ -112,7 +112,7 @@ export const NavigationBar = () => {
 			</div>
 
 			<div className="w-full h-full">
-				<TabsBox />
+				<TabsBox setCurrentTab={setCurrentTab} tabBox={tabBox} settingTab={settingTab} />
 			</div>
 
 			<div className="flex justify-end items-center gap-3 pr-3 min-w-[330px]">
