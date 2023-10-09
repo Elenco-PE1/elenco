@@ -1,31 +1,22 @@
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export const TabsBox = () => {
-	const [createdTabs, setCreatedTabs] = useState(["Document 1"]);
+export const TabsBox = ({setCurrentTab, tabBox, settingTab}: {setCurrentTab: Dispatch<SetStateAction<number>>, tabBox: string[], settingTab: number[]}) => {
+	const [createdTabs, setCreatedTabs] = useState(1);
 
 	const handlePlus = () => {
-		if (createdTabs.length < 5) {
-			let newTabs = createdTabs.concat(["New Tab " + createdTabs.length]);
-			setCreatedTabs(newTabs);
-		}
+		setCreatedTabs((prev) => ++prev)
 	};
 
-	const handleX = (name: string) => {
-		if (createdTabs.length > 1) {
-			let newTabs = createdTabs.filter(item => item !== name);
-			setCreatedTabs(newTabs);
-		}
+	const handleX = () => {
+		setCreatedTabs((prev) => --prev)
 	};
 
 	return (
-		<Tabs defaultValue={createdTabs[0]} className="w-full h-full">
+		<Tabs defaultValue={"0"} className="w-full h-full">
 			<TabsList className="flex gap-2 w-auto">
-				{createdTabs.map((value, index) => (
-					<Tab name={value} handleX={handleX} key={index} />
-				))}
 				<Button
 					variant={"ghost"}
 					size="sm"
@@ -34,25 +25,33 @@ export const TabsBox = () => {
 				>
 					<PlusIcon width={20} className="hover:stroke-[3px]" />
 				</Button>
+				{tabBox.slice(0, createdTabs).map((tabNm, index) => (
+					<Tab tabNm={"Document " + (settingTab[index]+1)} setCurrentTab={setCurrentTab} name={index} handleX={handleX} key={index} />
+				))}
 			</TabsList>
 		</Tabs>
 	);
 };
 
 export const Tab = ({
+	tabNm,
 	name,
 	handleX,
+	setCurrentTab
 }: {
-	name: string;
-	handleX: (name: string) => void;
+	tabNm: string,
+	name: number;
+	handleX: () => void;
+	setCurrentTab: Dispatch<SetStateAction<number>>,
 }) => {
 	return (
-		<TabsTrigger value={name} className="transition-opacity ease-in-out">
-			{name}
+		<TabsTrigger value={`${name}`} className="transition-opacity ease-in-out" onClick={() => setCurrentTab(name)}>
+			{/* {currentTab == 0 ? tabName : currentTab} */}
+			{tabNm}
 			<XMarkIcon
 				width={16}
 				className="z-10 hover:cursor-pointer hover:stroke-[3px]"
-				onClick={() => handleX(name)}
+				onClick={handleX}
 			/>
 		</TabsTrigger>
 	);
