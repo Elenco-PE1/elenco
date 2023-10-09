@@ -1,18 +1,18 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 
-const navigation = [
-    {
-        title: "Team Documentation 1",
-        url: '/',
-    },
-    {
-        title: "Document 1",
-        url: '/',
-    },
-]
+export const BreadcrumbsBar = ({currentFolder, currentFile}: {currentFolder: number, currentFile: number}) => {
+    const navigation = [
+        {
+            title: "Team Documentation "+(currentFolder+1),
+            url: '/',
+        },
+        {
+            title: "Document "+(currentFile+1),
+            url: '/',
+        },
+    ]
 
-export const BreadcrumbsBar = () => {
     return (
         <div className="p-6 flex items-center gap-5 sticky top-0">
             <div className="flex items-center">
