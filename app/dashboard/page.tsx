@@ -1,8 +1,9 @@
 "use client";
+import { BreadcrumbsBar } from "@/components/breadcrumbs-bar";
+import { Editor } from "@/components/editor";
 import { FileExplorer } from "@/components/file-explorer";
 import { NavigationBar } from "@/components/navigation-bar";
 import { SideNavigationBar } from "@/components/side-navigation-bar";
-import { Workspace } from "@/components/workspace";
 import { useState } from "react";
 
 export default function Dashboard() {
@@ -34,7 +35,10 @@ export default function Dashboard() {
 				setCurrentFolder={setCurrentFolder}
                 settingTab={settingTab}
 			/>
-			<Workspace currentFolder={currentFolder} currentFile={currentFile} />
+			<div className="absolute left-[260px] top-[64px] w-auto h-auto">
+				<BreadcrumbsBar currentFolder={currentFolder} currentFile={currentFile}  />
+				<Editor />
+			</div>
 		</main>
 	);
 }
