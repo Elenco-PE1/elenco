@@ -9,8 +9,13 @@ import { SheetContent } from "./ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { ShareDocument } from "./share-document";
 import { TeamMembers } from "./team-members";
-import { CommentBox } from "./comment-box";
+
+const CommentBox = dynamic(() => import("./comment-box"), {
+	ssr: false,
+});
+
 import { ExportBox } from "./export-box";
+import dynamic from "next/dynamic";
 
 export const TeamDashboard = () => {
 	return (
