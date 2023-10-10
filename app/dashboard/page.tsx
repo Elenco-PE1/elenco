@@ -4,7 +4,6 @@ import { Editor } from "@/components/editor";
 import { FileExplorer } from "@/components/file-explorer";
 import { NavigationBar } from "@/components/navigation-bar";
 import { SideNavigationBar } from "@/components/side-navigation-bar";
-import { Workspace } from "@/components/workspace";
 import { useState } from "react";
 
 export default function Dashboard() {
