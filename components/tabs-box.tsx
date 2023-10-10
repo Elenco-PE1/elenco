@@ -46,7 +46,6 @@ export const Tab = ({
 }) => {
 	return (
 		<TabsTrigger value={`${name}`} className="transition-opacity ease-in-out" onClick={() => setCurrentTab(name)}>
-			{/* {currentTab == 0 ? tabName : currentTab} */}
 			{tabNm}
 			<XMarkIcon
 				width={16}
