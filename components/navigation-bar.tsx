@@ -25,10 +25,20 @@ import { TeamDashboard } from "./team-dashboard";
 import { Popover, PopoverTrigger } from "./ui/popover";
 import { NotificationBox } from "./notification-box";
 
-export const NavigationBar = ({setCurrentTab, tabBox, settingTab}: {setCurrentTab: Dispatch<SetStateAction<number>>, tabBox: string[], settingTab: number[]}) => {
+export const NavigationBar = ({
+	setCurrentTab,
+	tabBox,
+	settingTab,
+}: {
+	setCurrentTab: Dispatch<SetStateAction<number>>;
+	tabBox: string[];
+	settingTab: number[];
+}) => {
 	const [showSearch, setShowSearch] = useState(false);
 	const [showSheet, setShowSheet] = useState(false);
 	const [showFileExplorer, setShowFileExplorer] = useState(false);
+
+	const [isNotificationVisible, setIsNotificationVisible] = useState(false);
 
 	return (
 		<Menubar>
@@ -112,7 +122,11 @@ export const NavigationBar = ({setCurrentTab, tabBox, settingTab}: {setCurrentTa
 			</div>
 
 			<div className="w-full h-full">
-				<TabsBox setCurrentTab={setCurrentTab} tabBox={tabBox} settingTab={settingTab} />
+				<TabsBox
+					setCurrentTab={setCurrentTab}
+					tabBox={tabBox}
+					settingTab={settingTab}
+				/>
 			</div>
 
 			<div className="flex justify-end items-center gap-3 pr-3 min-w-[330px]">
@@ -156,53 +170,40 @@ export const NavigationBar = ({setCurrentTab, tabBox, settingTab}: {setCurrentTa
 				</MenubarMenu>
 
 				<MenubarMenu>
-					<Popover>
-						<PopoverTrigger>
-							<TooltipProvider>
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<div>
-											<BellIcon
-												width={24}
-												className="hover:fill-secondary hover:stroke-primary my-3 transition-all"
-											/>
-										</div>
-									</TooltipTrigger>
-									<TooltipContent>
-										<p>Notifications</p>
-									</TooltipContent>
-								</Tooltip>
-							</TooltipProvider>
-						</PopoverTrigger>
-
-						<NotificationBox />
-					</Popover>
+					<NotificationBox
+						isVisible={isNotificationVisible}
+						setIsVisible={setIsNotificationVisible}
+					/>
 				</MenubarMenu>
 
 				<MenubarMenu>
 					<Sheet onOpenChange={() => setShowSheet(true)}>
-						{!showSheet && <SheetTrigger>
-							<TooltipProvider>
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<SquaresPlusIcon
-											width={24}
-											className="my-3 transition-all"										
-										/>
-									</TooltipTrigger>
-									<TooltipContent>
-										<p>Team Dashboard</p>
-									</TooltipContent>
-								</Tooltip>
-							</TooltipProvider>
-						</SheetTrigger>}
+						{!showSheet && (
+							<SheetTrigger>
+								<TooltipProvider>
+									<Tooltip>
+										<TooltipTrigger asChild>
+											<SquaresPlusIcon
+												width={24}
+												className="my-3 transition-all"
+											/>
+										</TooltipTrigger>
+										<TooltipContent>
+											<p>Team Dashboard</p>
+										</TooltipContent>
+									</Tooltip>
+								</TooltipProvider>
+							</SheetTrigger>
+						)}
 
-						{showSheet && <SheetClose onClick={() => setShowSheet(false)}>
-							<Squares2X2Icon
-								width={24}
-								className="my-3 transition-all"								
-							/>
-						</SheetClose>}
+						{showSheet && (
+							<SheetClose onClick={() => setShowSheet(false)}>
+								<Squares2X2Icon
+									width={24}
+									className="my-3 transition-all"
+								/>
+							</SheetClose>
+						)}
 
 						<TeamDashboard />
 					</Sheet>

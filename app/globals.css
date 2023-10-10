@@ -73,4 +73,8 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+
+	.popover > div {
+		@apply bg-white text-black p-5 rounded;
+	}
 }

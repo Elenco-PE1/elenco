@@ -10,7 +10,9 @@ export const env = createEnv({
 	server: {
 		DATABASE_URL: z.string().url(),
 		CLERK_SECRET_KEY: z.string().min(1),
-		ABLY_API_KEY: z.string().min(1)
+		ABLY_API_KEY: z.string().min(1),
+		KNOCK_PUBLIC_API_KEY: z.string().min(1),
+		KNOCK_FEED_CHANNEL_ID: z.string().min(1),
 	},
 	client: {
 		NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),

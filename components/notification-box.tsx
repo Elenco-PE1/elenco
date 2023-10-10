@@ -1,61 +1,43 @@
 "use client";
 
-import { BellIcon, EyeSlashIcon, UserIcon } from "@heroicons/react/24/outline";
+import { useUser } from "@clerk/nextjs";
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "./ui/card";
-import { PopoverContent } from "./ui/popover";
+	KnockFeedProvider,
+	NotificationIconButton,
+	NotificationFeedPopover,
+	NotificationFeed,
+	// @ts-ignore
+} from "@knocklabs/react-notification-feed";
+import { useRef } from "react";
 
-export const NotificationBox = () => {
+export const NotificationBox: React.FC<{
+	isVisible: boolean;
+	setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ isVisible, setIsVisible }) => {
+	const { user } = useUser();
+
+	if (!user) return null;
+
+	const notifButtonRef = useRef(null);
+
 	return (
-		<PopoverContent className="">
-			<Card className="bg-primary border-none">
-				<CardHeader className="pb-3">
-					<CardTitle>Notifications</CardTitle>
-					<CardDescription>
-						Choose what you want to be notified about.
-					</CardDescription>
-				</CardHeader>
-				<CardContent className="grid gap-1">
-					<div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
-						<BellIcon className="mt-px h-5 w-5" />
-						<div className="space-y-1">
-							<p className="text-sm font-medium leading-none">
-								Everything
-							</p>
-							<p className="text-sm text-muted-foreground">
-								Email digest, mentions & all activity.
-							</p>
-						</div>
-					</div>
-					<div className="-mx-2 flex items-start space-x-4 rounded-md bg-accent p-2 text-accent-foreground transition-all">
-						<UserIcon className="mt-px h-5 w-5" />
-						<div className="space-y-1">
-							<p className="text-sm font-medium leading-none">
-								Available
-							</p>
-							<p className="text-sm text-muted-foreground">
-								Only mentions and comments.
-							</p>
-						</div>
-					</div>
-					<div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
-						<EyeSlashIcon className="mt-px h-5 w-5" />
-						<div className="space-y-1">
-							<p className="text-sm font-medium leading-none">
-								Ignoring
-							</p>
-							<p className="text-sm text-muted-foreground">
-								Turn off all notifications.
-							</p>
-						</div>
-					</div>
-				</CardContent>
-			</Card>
-		</PopoverContent>
+		<KnockFeedProvider
+			apiKey={process.env.KNOCK_PUBLIC_API_KEY}
+			feedId={process.env.KNOCK_FEED_CHANNEL_ID}
+			userId={user.id}
+		>
+			<NotificationIconButton
+				ref={notifButtonRef}
+				onClick={() => setIsVisible(!isVisible)}
+			/>
+
+			<div className="popover">
+				<NotificationFeedPopover
+					buttonRef={notifButtonRef}
+					isVisible={isVisible}
+					onClose={() => setIsVisible(false)}
+				/>
+			</div>
+		</KnockFeedProvider>
 	);
 };

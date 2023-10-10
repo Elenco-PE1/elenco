@@ -11,6 +11,7 @@
 		"@clerk/nextjs": "^4.25.3",
 		"@heroicons/react": "^2.0.18",
 		"@knocklabs/node": "^0.4.24",
+		"@knocklabs/react-notification-feed": "^0.8.8",
 		"@lexical/react": "^0.12.2",
 		"@prisma/client": "5.3.1",
 		"@radix-ui/react-accordion": "^1.1.2",
