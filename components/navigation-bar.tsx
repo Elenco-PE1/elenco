@@ -24,6 +24,7 @@ import { Sheet, SheetClose, SheetTrigger } from "./ui/sheet";
 import { TeamDashboard } from "./team-dashboard";
 import { Popover, PopoverTrigger } from "./ui/popover";
 import { NotificationBox } from "./notification-box";
+import { OrganizationSwitcher } from "@clerk/nextjs";
 
 export const NavigationBar = ({
 	setCurrentTab,
@@ -130,6 +131,9 @@ export const NavigationBar = ({
 			</div>
 
 			<div className="flex justify-end items-center gap-3 pr-3 min-w-[330px]">
+				<MenubarMenu>
+					<OrganizationSwitcher />
+				</MenubarMenu>
 				<MenubarMenu>
 					<div className="flex items-center gap-1">
 						<TooltipProvider>

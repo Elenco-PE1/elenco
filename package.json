@@ -9,6 +9,7 @@
 	},
 	"dependencies": {
 		"@clerk/nextjs": "^4.25.3",
+		"@clerk/themes": "^1.7.7",
 		"@heroicons/react": "^2.0.18",
 		"@knocklabs/node": "^0.4.24",
 		"@knocklabs/react-notification-feed": "^0.8.8",

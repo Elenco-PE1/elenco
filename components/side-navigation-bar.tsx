@@ -18,7 +18,7 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ProfileBox } from "./profile-box";
-import { useUser } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 export const SideNavigationBar = () => {
 	const { isSignedIn, isLoaded, user } = useUser();
