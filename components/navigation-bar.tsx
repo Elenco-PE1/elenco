@@ -39,6 +39,8 @@ export const NavigationBar = ({
 	const [showSheet, setShowSheet] = useState(false);
 	const [showFileExplorer, setShowFileExplorer] = useState(false);
 
+	const [isNotificationVisible, setIsNotificationVisible] = useState(false);
+
 	return (
 		<Menubar>
 			<div className="min-w-[220px] flex gap-4 pl-3">
@@ -172,27 +174,10 @@ export const NavigationBar = ({
 				</MenubarMenu>
 
 				<MenubarMenu>
-					<Popover>
-						<PopoverTrigger>
-							<TooltipProvider>
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<div>
-											<BellIcon
-												width={24}
-												className="hover:fill-secondary hover:stroke-primary my-3 transition-all"
-											/>
-										</div>
-									</TooltipTrigger>
-									<TooltipContent>
-										<p>Notifications</p>
-									</TooltipContent>
-								</Tooltip>
-							</TooltipProvider>
-						</PopoverTrigger>
-
-						<NotificationBox />
-					</Popover>
+					<NotificationBox
+						isVisible={isNotificationVisible}
+						setIsVisible={setIsNotificationVisible}
+					/>
 				</MenubarMenu>
 
 				<MenubarMenu>

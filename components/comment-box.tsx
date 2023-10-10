@@ -15,43 +15,34 @@ import { ScrollArea } from "./ui/scroll-area";
 
 import * as Ably from "ably";
 import { AblyProvider, useChannel } from "ably/react";
-import { FormEvent, KeyboardEventHandler, useEffect, useRef, useState } from "react";
-import { useAuth, useUser } from "@clerk/nextjs";
+import {
+	FormEvent,
+	KeyboardEventHandler,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
+import { useAuth, useOrganization, useUser } from "@clerk/nextjs";
+import { api } from "@/lib/axios";
 
-const comments = [
-	{
-		name: "Anushree",
-		fallBack: "AJ",
-		message: "The documentation needs to be reviewed after modification",
-		time: "5:30 pm",
-	},
-	{
-		name: "Khushal",
-		fallBack: "KB",
-		message: "Made the modifications successfully",
-		time: "7:21 pm",
-	},
-	{
-		name: "Ishank",
-		fallBack: "IL",
-		message: "Reviewed the docs",
-		time: "8:02 pm",
-	},
-];
+import { BodyValidator } from "@/lib/validators";
 
 export default function CommentBox() {
 	const client = new Ably.Realtime.Promise({ authUrl: "/api/chat" });
-	
+
 	return (
-		<AblyProvider
-			client={client}
-		>
+		<AblyProvider client={client}>
 			<Box />
 		</AblyProvider>
 	);
 }
 
-const formatter = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', day:"numeric", month:"short" });
+const formatter = new Intl.DateTimeFormat("en-US", {
+	hour: "2-digit",
+	minute: "2-digit",
+	day: "numeric",
+	month: "short",
+});
 
 export const Box = () => {
 	const { channel, ably } = useChannel(
@@ -61,9 +52,10 @@ export const Box = () => {
 		}
 	);
 
-	const {user, isLoaded, isSignedIn} = useUser();
-	
-	if (!user || !isSignedIn || !isLoaded) return null;
+	const { user, isLoaded, isSignedIn } = useUser();
+	const { organization, memberships } = useOrganization();
+
+	if (!user || !isSignedIn || !isLoaded || !organization) return null;
 
 	let inputBox = useRef<HTMLInputElement>(null);
 
@@ -71,21 +63,37 @@ export const Box = () => {
 	const [receivedMessages, setMessages] = useState<Ably.Types.Message[]>([]);
 	const messageTextIsEmpty = messageText.trim().length === 0;
 
-	channel.history().then((data:any) => {
-		if (data.items.length === 0) return;
-		
-		setMessages((data.items as Array<any>).reverse());
-	}).catch((error:any) => console.error(error))
+	channel
+		.history()
+		.then((data: any) => {
+			if (data.items.length === 0) return;
+
+			setMessages((data.items as Array<any>).reverse());
+		})
+		.catch((error: any) => console.error(error));
 
 	const sendChatMessage = async (messageText: string) => {
 		channel.publish({
 			name: "chat-message",
-			data: {name: user.firstName,
-			imageUrl: user.imageUrl,
-			message: messageText,
-			time: new Date().toISOString(), },
+			data: {
+				name: user.firstName,
+				imageUrl: user.imageUrl,
+				message: messageText,
+				time: new Date().toISOString(),
+			},
 		});
 		setMessageText("");
+
+		const payload: BodyValidator = {
+			recipients: (await organization.getMemberships()).map(
+				membership => membership.publicUserData.userId!
+			),
+			actorId: user.id,
+			actorName: user.firstName || "Team Member",
+		};
+
+		await api.post("/chat/notify", payload);
+
 		inputBox.current!.focus();
 	};
 
@@ -95,34 +103,32 @@ export const Box = () => {
 	};
 
 	const messages = receivedMessages.map((message, index) => {
-		const author = message.connectionId === ably.connection.id ? "me" : "other";
+		const author =
+			message.connectionId === ably.connection.id ? "me" : "other";
 
-		return <div
-				key={index}
-				className="grid gap-1 py-2 px-1"
-			>
-			<div className="flex items-center justify-between">
-				<div className="flex items-center space-x-2">
-					<Avatar className="h-5 w-5">
-						<AvatarImage src={message.data.imageUrl} />
-						<AvatarFallback className="text-[10px]">
-							{message.name.slice(2)}
-						</AvatarFallback>
-					</Avatar>
-					<p className="text-xs font-medium leading-none">
-						{message.data.name}
+		return (
+			<div key={index} className="grid gap-1 py-2 px-1">
+				<div className="flex items-center justify-between">
+					<div className="flex items-center space-x-2">
+						<Avatar className="h-5 w-5">
+							<AvatarImage src={message.data.imageUrl} />
+							<AvatarFallback className="text-[10px]">
+								{message.name.slice(2)}
+							</AvatarFallback>
+						</Avatar>
+						<p className="text-xs font-medium leading-none">
+							{message.data.name}
+						</p>
+					</div>
+
+					<p className="text-[10px] text-opacity-75">
+						{formatter.format(new Date(message.data.time))}
 					</p>
 				</div>
 
-				<p className="text-[10px] text-opacity-75">
-					{formatter.format(new Date(message.data.time))}
-				</p>
+				<div className=" ml-7 text-sm">{message.data.message}</div>
 			</div>
-
-			<div className=" ml-7 text-sm">
-				{message.data.message}
-			</div>
-		</div>	
+		);
 	});
 
 	const messageEndRef = useRef<HTMLDivElement>(null);
@@ -132,7 +138,7 @@ export const Box = () => {
 			messageEndRef.current.scrollIntoView({ behavior: "smooth" });
 		}
 	});
-	
+
 	return (
 		<Card className="h-full pb-2 rounded-none border-none">
 			<CardHeader>
@@ -144,14 +150,15 @@ export const Box = () => {
 			<CardContent className="grid gap-4">
 				<ScrollArea className="h-[400px]">
 					<div className="grid gap-8">
-						<div className="grid gap-4">
-							{messages}
-						</div>
+						<div className="grid gap-4">{messages}</div>
 						<div ref={messageEndRef}></div>
 					</div>
 				</ScrollArea>
 
-				<form onSubmit={handleFormSubmission} className="flex items-center w-full">
+				<form
+					onSubmit={handleFormSubmission}
+					className="flex items-center w-full"
+				>
 					<Input
 						className="rounded-md w-full"
 						value={messageText}
