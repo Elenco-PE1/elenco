@@ -7,9 +7,8 @@ import {
 	CollapsibleTrigger,
 } from "./ui/collapsible";
 import { Separator } from "./ui/separator";
-import { Tabs, TabsContent, TabsTrigger } from "./ui/tabs";
+import { Tabs, TabsTrigger } from "./ui/tabs";
 import { TabsList } from "@radix-ui/react-tabs";
-import { Workspace } from "./workspace";
 
 export const Folder = ({
 	folderIndex,
