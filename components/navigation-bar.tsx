@@ -30,16 +30,42 @@ export const NavigationBar = ({
 	setCurrentTab,
 	tabBox,
 	settingTab,
+	currentFolder,
+	newFile,
+	setNewFile,
+	newFolder,
+	setNewFolder,
+	setShowFileExp,
 }: {
 	setCurrentTab: Dispatch<SetStateAction<number>>;
 	tabBox: string[];
 	settingTab: number[];
+	currentFolder: number,
+	newFile: number[],
+	setNewFile: Dispatch<SetStateAction<number[]>>;
+	newFolder: number,
+	setNewFolder: Dispatch<SetStateAction<number>>,
+	setShowFileExp: Dispatch<SetStateAction<boolean>>
 }) => {
 	const [showSearch, setShowSearch] = useState(false);
 	const [showSheet, setShowSheet] = useState(false);
 	const [showFileExplorer, setShowFileExplorer] = useState(false);
 
 	const [isNotificationVisible, setIsNotificationVisible] = useState(false);
+
+	const handleNewFolder = () => {
+		if (newFolder <= 20) {
+			setNewFolder(++newFolder)
+		}
+	}
+
+	const handleNewFile = () => {
+		if(newFile[currentFolder] <= 20) {
+			var temp = [...newFile]
+			++temp[currentFolder];
+			setNewFile(temp)
+		}
+	}
 
 	return (
 		<Menubar>
@@ -49,9 +75,10 @@ export const NavigationBar = ({
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<Toggle
-									onPressedChange={() =>
+									onPressedChange={() =>{
 										setShowFileExplorer(prev => !prev)
-									}
+										setShowFileExp(prev => !prev)
+									}}
 								>
 									{!showFileExplorer ? (
 										<div className="group">
@@ -89,7 +116,7 @@ export const NavigationBar = ({
 					<TooltipProvider>
 						<Tooltip>
 							<TooltipTrigger asChild>
-								<div>
+								<div onClick={handleNewFolder}>
 									<FolderPlusIcon
 										width={24}
 										className="hover:fill-secondary hover:stroke-primary my-3 transition-all hover:cursor-pointer"
@@ -107,7 +134,7 @@ export const NavigationBar = ({
 					<TooltipProvider>
 						<Tooltip>
 							<TooltipTrigger asChild>
-								<div>
+								<div onClick={handleNewFile}>
 									<DocumentPlusIcon
 										width={24}
 										className="hover:fill-secondary hover:stroke-primary my-3 transition-all hover:cursor-pointer"
