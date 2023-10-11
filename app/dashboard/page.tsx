@@ -7,7 +7,14 @@ import { SideNavigationBar } from "@/components/side-navigation-bar";
 import { useState } from "react";
 
 export default function Dashboard() {
-	const ar = [[1, 2, 3], [1], []];
+	const rows = 20;
+	const columns = 20;
+	
+	const teamDoc = Array.from({ length: rows }, () => 
+				new Array(columns).fill(0));
+
+	const [newFile, setNewFile] = useState([3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+	const [newFolder, setNewFolder] = useState(3)
 	const tabBox = ["New Tab", "New Tab", "New Tab", "New Tab", "New Tab"];
 	const [currentFolder, setCurrentFolder] = useState(0);
 	const [currentFile, setCurrentFile] = useState(0);
@@ -19,6 +26,7 @@ export default function Dashboard() {
 		currentFile,
 		currentFile,
 	]);
+	const [showFileExp, setShowFileExp] = useState(false)
 
 	return (
 		<main className="bg-foreground text-secondary h-screen w-screen flex flex-col">
@@ -27,14 +35,22 @@ export default function Dashboard() {
 				tabBox={tabBox}
 				setCurrentTab={setCurrentTab}
 				settingTab={settingTab}
+				currentFolder={currentFolder}
+				newFile={newFile}
+				setNewFile={setNewFile}
+				newFolder={newFolder}
+				setNewFolder={setNewFolder}
+				setShowFileExp={setShowFileExp}
 			/>
-			<FileExplorer
-				ar={ar}
+			{showFileExp && <FileExplorer
+				teamDoc={teamDoc}
+				newFile={newFile}
+				newFolder={newFolder}
 				currentTab={currentTab}
 				setCurrentFile={setCurrentFile}
 				setCurrentFolder={setCurrentFolder}
                 settingTab={settingTab}
-			/>
+			/>}
 			<div className="absolute left-[260px] top-[64px] w-auto h-auto">
 				<BreadcrumbsBar currentFolder={currentFolder} currentFile={currentFile}  />
 				<Editor />
