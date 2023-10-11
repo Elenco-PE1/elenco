@@ -12,16 +12,16 @@ import { TabsList } from "@radix-ui/react-tabs";
 
 export const Folder = ({
 	folderIndex,
-	ar,
-	file,
+	teamDoc,
+	newFile,
 	currentTab,
 	setCurrentFile,
 	setCurrentFolder,
 	settingTab,
 }: {
 	folderIndex: number;
-	ar: number[][];
-	file: number[];
+	teamDoc: number[][],
+	newFile: number[],
 	currentTab: number;
 	setCurrentFile: Dispatch<SetStateAction<number>>;
 	setCurrentFolder: Dispatch<SetStateAction<number>>;
@@ -58,12 +58,11 @@ export const Folder = ({
 				</div>
 				<CollapsibleContent className="transition-all">
 					<TabsList>
-						{file.map((filevalue, id) => (
+						{teamDoc[folderIndex].slice(0, newFile[folderIndex]).map((filevalue, id) => (
 							<TabsTrigger
-								value={`${ar[folderIndex][id]}`}
-								className="transition-all flex h-7 items-center rounded-l-none rounded-r-md ml-6 space-x-2 text-sm bg-transparent p-0 data-[state=active]:bg-muted-foreground hover:bg-muted-foreground  hover:cursor-pointer"
+								value={`${folderIndex+id}`}
+								className="transition-all flex h-7 items-center rounded-none rounded-r-md ml-6 space-x-2 text-sm bg-transparent p-0 data-[state=active]:bg-muted-foreground hover:bg-muted-foreground  hover:cursor-pointer"
 								key={id}
-								defaultChecked={ id==0 && settingTab[currentTab] == 0 }
 								onClick={() => {
 									setCurrentFile(id);
 									setCurrentFolder(folderIndex);
@@ -73,7 +72,7 @@ export const Folder = ({
 							>
 								<Separator orientation="vertical" />
 								<p className="text-sm flex items-center rounded-sm w-full h-full pl-2">
-									Document {filevalue}
+									Document {id + 1}
 								</p>
 							</TabsTrigger>
 						))}
