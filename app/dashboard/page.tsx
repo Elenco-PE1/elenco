@@ -26,7 +26,7 @@ export default function Dashboard() {
 		currentFile,
 		currentFile,
 	]);
-	const [showFileExp, setShowFileExp] = useState(false)
+	const [showFileExp, setShowFileExp] = useState(true)
 
 	return (
 		<main className="bg-foreground text-secondary h-screen w-screen flex flex-col">

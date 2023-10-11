@@ -49,7 +49,7 @@ export const NavigationBar = ({
 }) => {
 	const [showSearch, setShowSearch] = useState(false);
 	const [showSheet, setShowSheet] = useState(false);
-	const [showFileExplorer, setShowFileExplorer] = useState(false);
+	const [showFileExplorer, setShowFileExplorer] = useState(true);
 
 	const [isNotificationVisible, setIsNotificationVisible] = useState(false);
 
@@ -201,7 +201,7 @@ export const NavigationBar = ({
 				</MenubarMenu>
 
 				<MenubarMenu>
-					<NotificationBox
+				<NotificationBox
 						isVisible={isNotificationVisible}
 						setIsVisible={setIsNotificationVisible}
 					/>
