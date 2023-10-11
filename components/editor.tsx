@@ -14,16 +14,15 @@ import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { TRANSFORMERS } from '@lexical/markdown';
-import {HashtagNode} from '@lexical/hashtag'
-import {MarkdownShortcutPlugin} from '@lexical/react/LexicalMarkdownShortcutPlugin';
+import { HashtagNode } from '@lexical/hashtag'
+import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
 
 import exampleTheme from "./themes";
-
 
 const editorConfig = {
 	namespace: "MyEditor",
 	// The editor theme
-	theme: {},
+	theme: exampleTheme,
 	// Handling of errors during update
 	onError(error: any) {
 		throw error;
@@ -39,7 +38,7 @@ const editorConfig = {
 		TableCellNode,
 		TableRowNode,
 		AutoLinkNode,
-    HashtagNode,
+    	HashtagNode,
 		LinkNode,
 	],
 };
@@ -64,7 +63,7 @@ export const Editor = () => {
 			<AutoFocusPlugin />
 			<ListPlugin />
 			<LinkPlugin />
-      <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+      		<MarkdownShortcutPlugin transformers={TRANSFORMERS} />
 		</LexicalComposer>
 	);
 };
