@@ -13,7 +13,7 @@ export default function Dashboard() {
 	const teamDoc = Array.from({ length: rows }, () => 
 				new Array(columns).fill(0));
 
-	const [newFile, setNewFile] = useState([3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+	const [newFile, setNewFile] = useState([3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
 	const [newFolder, setNewFolder] = useState(3)
 	const tabBox = ["New Tab", "New Tab", "New Tab", "New Tab", "New Tab"];
 	const [currentFolder, setCurrentFolder] = useState(0);
