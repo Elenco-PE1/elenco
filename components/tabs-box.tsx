@@ -7,11 +7,11 @@ export const TabsBox = ({setCurrentTab, tabBox, settingTab}: {setCurrentTab: Dis
 	const [createdTabs, setCreatedTabs] = useState(1);
 
 	const handlePlus = () => {
-		setCreatedTabs((prev) => ++prev)
+		if(createdTabs < 6) setCreatedTabs((prev) => ++prev)
 	};
 
 	const handleX = () => {
-		setCreatedTabs((prev) => --prev)
+		if(createdTabs > 1) setCreatedTabs((prev) => --prev)
 	};
 
 	return (
