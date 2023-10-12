@@ -20,6 +20,7 @@ import {
 	SelectValue,
 } from "./ui/select";
 import { Separator } from "./ui/separator";
+import { usePathname } from "next/navigation";
 
 const members = [
 	{
@@ -50,6 +51,7 @@ const members = [
 ];
 
 export const ShareDocument = () => {
+	const router = usePathname()
 	return (
 		<Card className="h-full pb-2 rounded-none border-none">
 			<CardHeader>
@@ -61,7 +63,7 @@ export const ShareDocument = () => {
 			<CardContent>
 				<div className="flex space-x-1">
 					<Input
-						value="http://example.com/link/to/document"
+						value={`https://localhost:3000${router}`}
 						readOnly
 					/>
 					<Button variant="ghost">
