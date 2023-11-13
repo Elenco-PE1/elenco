@@ -23,7 +23,7 @@ export default function Home() {
 					<p className="text-xl pr-[20px]">
 						{" "}
 						Empowering students to collaborate and innovate
-						seamlessly on project ideas
+						seamlessly on project ideas...
 					</p>
 					<SignUpButton>
 						<Button
