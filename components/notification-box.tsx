@@ -1,6 +1,5 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
 import {
 	KnockFeedProvider,
 	NotificationIconButton,
@@ -14,17 +13,12 @@ export const NotificationBox: React.FC<{
 	isVisible: boolean;
 	setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ isVisible, setIsVisible }) => {
-	const { user } = useUser();
-
-	if (!user) return null;
-
 	const notifButtonRef = useRef(null);
 
 	return (
 		<KnockFeedProvider
 			apiKey={process.env.KNOCK_PUBLIC_API_KEY}
 			feedId={process.env.KNOCK_FEED_CHANNEL_ID}
-			userId={user.id}
 		>
 			<NotificationIconButton
 				ref={notifButtonRef}
