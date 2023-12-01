@@ -1,6 +1,5 @@
 "use client";
 import {
-	BellIcon,
 	DocumentIcon,
 	DocumentPlusIcon,
 	DocumentTextIcon,
@@ -11,7 +10,7 @@ import {
 import { Squares2X2Icon } from "@heroicons/react/24/solid";
 import { Menubar, MenubarMenu } from "./ui/menubar";
 import { Input } from "./ui/input";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { TabsBox } from "./tabs-box";
 import { Toggle } from "./ui/toggle";
 import {
@@ -22,9 +21,7 @@ import {
 } from "./ui/tooltip";
 import { Sheet, SheetClose, SheetTrigger } from "./ui/sheet";
 import { TeamDashboard } from "./team-dashboard";
-import { Popover, PopoverTrigger } from "./ui/popover";
 import { NotificationBox } from "./notification-box";
-import { OrganizationSwitcher } from "@clerk/nextjs";
 
 export const NavigationBar = ({
 	setCurrentTab,
@@ -159,7 +156,7 @@ export const NavigationBar = ({
 
 			<div className="flex justify-end items-center gap-3 pr-3 min-w-[330px]">
 				<MenubarMenu>
-					<OrganizationSwitcher />
+					{/* organisation switcher */}
 				</MenubarMenu>
 				<MenubarMenu>
 					<div className="flex items-center gap-1">

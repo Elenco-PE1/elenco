@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { faqs } from "@/lib/faqs";
-import { SignUpButton } from "@clerk/nextjs";
 
 export default function Home() {
 	return (
@@ -25,7 +24,7 @@ export default function Home() {
 						Empowering students to collaborate and innovate
 						seamlessly on project ideas...
 					</p>
-					<SignUpButton>
+						{/* sign up button from auth */}
 						<Button
 							variant={"ghost"}
 							size={"lg"}
@@ -33,7 +32,6 @@ export default function Home() {
 						>
 							Get Started for Free
 						</Button>
-					</SignUpButton>
 				</div>
 
 				<div className="overflow-hidden w-full  h-screen">

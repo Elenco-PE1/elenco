@@ -18,11 +18,8 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ProfileBox } from "./profile-box";
-import { UserButton, useUser } from "@clerk/nextjs";
 
 export const SideNavigationBar = () => {
-	const { isSignedIn, isLoaded, user } = useUser();
-
 	return (
 		<Menubar>
 			<MenubarMenu>
@@ -31,14 +28,12 @@ export const SideNavigationBar = () => {
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									{isLoaded && (isSignedIn || user) && (
-										<Avatar className="h-6 w-6 my-4 hover:cursor-pointer">
-											<AvatarImage src={user.imageUrl} />
-											<AvatarFallback className="bg-transparent border-2 text-xs font-semibold">
-												{user.firstName}
-											</AvatarFallback>
-										</Avatar>
-									)}
+									<Avatar className="h-6 w-6 my-4 hover:cursor-pointer">
+										<AvatarImage src={""} />
+										<AvatarFallback className="bg-transparent border-2 text-xs font-semibold">
+											S
+										</AvatarFallback>
+									</Avatar>
 								</TooltipTrigger>
 								<TooltipContent className="mt-4" side="bottom">
 									<p>Profile</p>

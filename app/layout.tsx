@@ -1,9 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-
-import { dark, neobrutalism } from "@clerk/themes";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -22,14 +19,7 @@ export default async function RootLayout({
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<ClerkProvider
-				afterSignInUrl="/dashboard"
-				signInUrl="/sign-in"
-				signUpUrl="/sign-up"
-				appearance={{ baseTheme: dark }}
-			>
-				<body className={poppins.className}>{children}</body>
-			</ClerkProvider>
+			<body className={poppins.className}>{children}</body>
 		</html>
 	);
 }
