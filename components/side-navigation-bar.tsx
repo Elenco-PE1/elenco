@@ -2,6 +2,9 @@
 import {
 	ArrowRightOnRectangleIcon,
 	Cog6ToothIcon,
+	DocumentPlusIcon,
+	DocumentTextIcon,
+	FolderPlusIcon,
 	InformationCircleIcon,
 	QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
@@ -18,35 +21,109 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ProfileBox } from "./profile-box";
+import { useState } from "react";
 
 export const SideNavigationBar = () => {
+	const [showFileExplorer, setShowFileExplorer] = useState(true);
+
 	return (
 		<Menubar>
-			<MenubarMenu>
-				<Dialog>
-					<DialogTrigger className="hover:cursor-default">
-						<TooltipProvider>
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<Avatar className="h-6 w-6 my-4 hover:cursor-pointer">
-										<AvatarImage src={""} />
-										<AvatarFallback className="bg-transparent border-2 text-xs font-semibold">
-											S
-										</AvatarFallback>
-									</Avatar>
-								</TooltipTrigger>
-								<TooltipContent className="mt-4" side="bottom">
-									<p>Profile</p>
-								</TooltipContent>
-							</Tooltip>
-						</TooltipProvider>
-					</DialogTrigger>
+			<div className="flex flex-col gap-3 my-2 items-center">
+				<MenubarMenu>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>								
+								<DocumentTextIcon
+									width={22}
+									className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
+								/>
+							</TooltipTrigger>
+							<TooltipContent
+							side="right"
+							>
+								<p>File Explorer</p>
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
+				</MenubarMenu>
 
-					<ProfileBox />
-				</Dialog>
-			</MenubarMenu>
+				<MenubarMenu>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<div
+									onClick={() =>
+										console.log("handle new folder")
+									}
+								>
+									<FolderPlusIcon
+										width={22}
+										className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
+									/>
+								</div>
+							</TooltipTrigger>
+							<TooltipContent
+							side="right"
+							>
+								<p>Add Folder</p>
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
+				</MenubarMenu>
 
-			<div className="flex flex-col gap-3">
+				<MenubarMenu>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<div
+									onClick={() =>
+										console.log("handle new file")
+									}
+								>
+									<DocumentPlusIcon
+										width={22}
+										className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
+									/>
+								</div>
+							</TooltipTrigger>
+							<TooltipContent
+							side="right"
+							>
+								<p>Add File</p>
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
+				</MenubarMenu>
+			</div>
+
+			<div className="flex flex-col gap-3 my-2 items-center">
+				<MenubarMenu>
+					<Dialog>
+						<DialogTrigger className="hover:cursor-default">
+							<TooltipProvider>
+								<Tooltip>
+									<TooltipTrigger asChild>
+										<Avatar className="h-5 w-5 hover:cursor-pointer">
+											<AvatarImage src={""} />
+											<AvatarFallback className="bg-transparent border-2 text-xs font-semibold">
+												S
+											</AvatarFallback>
+										</Avatar>
+									</TooltipTrigger>
+									<TooltipContent
+										className="mt-4"
+										side="bottom"
+									>
+										<p>Profile</p>
+									</TooltipContent>
+								</Tooltip>
+							</TooltipProvider>
+						</DialogTrigger>
+
+						<ProfileBox />
+					</Dialog>
+				</MenubarMenu>
+
 				<MenubarMenu>
 					<Dialog>
 						<DialogTrigger>
@@ -55,7 +132,7 @@ export const SideNavigationBar = () => {
 									<TooltipTrigger asChild>
 										<ArrowRightOnRectangleIcon
 											width={22}
-											className="rotate-180 transition-all  hover:stroke-2 hover:cursor-pointer"
+											className="rotate-180 stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
 										/>
 									</TooltipTrigger>
 									<TooltipContent side="right">
@@ -76,7 +153,7 @@ export const SideNavigationBar = () => {
 								<Link href={"/"}>
 									<InformationCircleIcon
 										width={22}
-										className="transition-all hover:fill-secondary hover:stroke-primary hover:cursor-pointer"
+										className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
 									/>
 								</Link>
 							</TooltipTrigger>
@@ -94,7 +171,7 @@ export const SideNavigationBar = () => {
 								<Link href={"/"}>
 									<QuestionMarkCircleIcon
 										width={22}
-										className="transition-all hover:fill-secondary hover:stroke-primary hover:cursor-pointer"
+										className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
 									/>
 								</Link>
 							</TooltipTrigger>
@@ -113,7 +190,7 @@ export const SideNavigationBar = () => {
 									<TooltipTrigger asChild>
 										<Cog6ToothIcon
 											width={22}
-											className="transition-all hover:fill-secondary hover:stroke-primary focus:stroke-primary focus:fill-secondary hover:cursor-pointer"
+											className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
 										/>
 									</TooltipTrigger>
 									<TooltipContent side="right">
