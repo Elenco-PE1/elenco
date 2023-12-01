@@ -11,8 +11,6 @@
 // 		DATABASE_URL: z.string().url(),
 // 	},
 // 	client: {
-// 		KNOCK_PUBLIC_API_KEY: z.string().min(1),
-// 		KNOCK_FEED_CHANNEL_ID: z.string().min(1),
 // 	},
 // 	/**
 // 	 * What object holds the environment variables at runtime.
