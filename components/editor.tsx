@@ -45,25 +45,28 @@ const editorConfig = {
 
 export const Editor = () => {
 	return (
-		<LexicalComposer initialConfig={editorConfig}>
-			<RichTextPlugin
-				contentEditable={
-					<ContentEditable
-						spellCheck
-            			tabIndex={4}
-						className="mx-6 p-4 border-none font-[200] overflow-y-scroll outline-none focus:outline-none [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white [&::-webkit-scrollbar-thumb]:rounded-md"
-						style={{ width: "1220px", height: "550px" }}
-					/>
-				}
-				placeholder={<div className="absolute top-[82px] left-10 text-muted-foreground font-semibold tracking-wide">Enter some text...</div>}
-				ErrorBoundary={LexicalErrorBoundary}
-			/>
-			<HistoryPlugin />
-			<HistoryPlugin />
-			<AutoFocusPlugin />
-			<ListPlugin />
-			<LinkPlugin />
-      		<MarkdownShortcutPlugin transformers={TRANSFORMERS} />
-		</LexicalComposer>
+		// <LexicalComposer initialConfig={editorConfig}>
+		// 	<RichTextPlugin
+		// 		contentEditable={
+		// 			<ContentEditable
+		// 				spellCheck
+        //     			tabIndex={4}
+		// 				className="mx-6 p-4 border-none font-[200] overflow-y-scroll outline-none focus:outline-none [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white [&::-webkit-scrollbar-thumb]:rounded-md"
+		// 				style={{ width: "1220px", height: "550px" }}
+		// 			/>
+		// 		}
+		// 		placeholder={<div className="absolute top-[82px] left-10 text-muted-foreground font-semibold tracking-wide">Enter some text...</div>}
+		// 		ErrorBoundary={LexicalErrorBoundary}
+		// 	/>
+		// 	<HistoryPlugin />
+		// 	<HistoryPlugin />
+		// 	<AutoFocusPlugin />
+		// 	<ListPlugin />
+		// 	<LinkPlugin />
+      	// 	<MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+		// </LexicalComposer>
+		<div className="max-h-full">
+			editor
+		</div>
 	);
 };

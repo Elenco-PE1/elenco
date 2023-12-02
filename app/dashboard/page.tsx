@@ -29,19 +29,7 @@ export default function Dashboard() {
 	const [showFileExp, setShowFileExp] = useState(true)
 
 	return (
-		<main className="bg-foreground text-secondary h-screen w-screen flex flex-col">
-			<SideNavigationBar />
-			<NavigationBar
-				tabBox={tabBox}
-				setCurrentTab={setCurrentTab}
-				settingTab={settingTab}
-				currentFolder={currentFolder}
-				newFile={newFile}
-				setNewFile={setNewFile}
-				newFolder={newFolder}
-				setNewFolder={setNewFolder}
-				setShowFileExp={setShowFileExp}
-			/>
+		<main className="box-border bg-foreground text-secondary h-screen max-h-screen w-screen flex">
 			{showFileExp && <FileExplorer
 				teamDoc={teamDoc}
 				newFile={newFile}
@@ -49,12 +37,26 @@ export default function Dashboard() {
 				currentTab={currentTab}
 				setCurrentFile={setCurrentFile}
 				setCurrentFolder={setCurrentFolder}
-                settingTab={settingTab}
+				settingTab={settingTab}
 			/>}
-			<div className="absolute left-[260px] top-[64px] w-auto h-auto">
-				<BreadcrumbsBar currentFolder={currentFolder} currentFile={currentFile}  />
-				<Editor />
+			<div className="flex flex-col w-full">
+				<NavigationBar
+					tabBox={tabBox}
+					setCurrentTab={setCurrentTab}
+					settingTab={settingTab}
+					currentFolder={currentFolder}
+					newFile={newFile}
+					setNewFile={setNewFile}
+					newFolder={newFolder}
+					setNewFolder={setNewFolder}
+					setShowFileExp={setShowFileExp}
+				/>
+				<div className="w-full pt-2 pl-11 pr-1 h-screen max-h-screen flex flex-col gap-3">
+					<BreadcrumbsBar currentFolder={currentFolder} currentFile={currentFile}  />
+					<Editor />
+				</div>
 			</div>
+			<SideNavigationBar setShowFileExp={setShowFileExp} />
 		</main>
 	);
 }
