@@ -2,6 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+	color: hsl(240 10% 3.9%);
+	background: hsl(240 3.8% 46.1%);
+}
+
+h1.ce-header{
+	@apply text-4xl font-bold
+}
+
+h2.ce-header{
+	@apply text-3xl font-semibold
+}
+
+h3.ce-header{
+	@apply text-2xl font-semibold
+}
+
+h4.ce-header{
+	@apply text-xl font-semibold
+}
+
+h5.ce-header{
+	@apply text-lg font-semibold
+}
+
+h6.ce-header{
+	@apply text-base font-semibold
+}
+
+.inline-code {
+	@apply !text-[#49b5f6] !text-base !font-mono !bg-gray-900
+}
+
+.cdx-marker {
+	@apply text-accent
+}
+
+.ce-inline-toolbar{
+	@apply border-accent bg-foreground
+}
+
+.ce-inline-toolbar__dropdown{
+	@apply text-accent hover:bg-primary rounded-l-[6px]
+}
+
+.ce-inline-tool{
+	@apply text-accent py-0 px-0 mx-[1.5px] my-[6px] rounded-md hover:bg-primary
+}
+
+.ce-inline-tool--active{
+	@apply bg-accent text-foreground hover:text-accent
+}
+
+.ce-conversion-toolbar{
+	@apply bg-primary overflow-hidden
+}
+
+.ce-conversion-tool{
+	@apply hover:text-foreground
+}
+
+.ce-conversion-tool__icon{
+	@apply text-accent bg-foreground hover:text-foreground
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;
