@@ -2,9 +2,7 @@
 import {
 	ArrowRightOnRectangleIcon,
 	Cog6ToothIcon,
-	DocumentPlusIcon,
 	DocumentTextIcon,
-	FolderPlusIcon,
 	InformationCircleIcon,
 	QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
@@ -21,11 +19,9 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ProfileBox } from "./profile-box";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export const SideNavigationBar = () => {
-	const [showFileExplorer, setShowFileExplorer] = useState(true);
-
+export const SideNavigationBar = ({ setShowFileExp }: { setShowFileExp: Dispatch<SetStateAction<boolean>>}) => {
 	return (
 		<Menubar>
 			<div className="flex flex-col gap-3 my-2 items-center">
@@ -35,6 +31,7 @@ export const SideNavigationBar = () => {
 							<TooltipTrigger asChild>								
 								<DocumentTextIcon
 									width={22}
+									onClick={() => setShowFileExp(prev => !prev)}
 									className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
 								/>
 							</TooltipTrigger>
@@ -42,54 +39,6 @@ export const SideNavigationBar = () => {
 							side="right"
 							>
 								<p>File Explorer</p>
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				</MenubarMenu>
-
-				<MenubarMenu>
-					<TooltipProvider>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<div
-									onClick={() =>
-										console.log("handle new folder")
-									}
-								>
-									<FolderPlusIcon
-										width={22}
-										className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
-									/>
-								</div>
-							</TooltipTrigger>
-							<TooltipContent
-							side="right"
-							>
-								<p>Add Folder</p>
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				</MenubarMenu>
-
-				<MenubarMenu>
-					<TooltipProvider>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<div
-									onClick={() =>
-										console.log("handle new file")
-									}
-								>
-									<DocumentPlusIcon
-										width={22}
-										className="stroke-muted-foreground transition-colors hover:stroke-primary-foreground hover:cursor-pointer"
-									/>
-								</div>
-							</TooltipTrigger>
-							<TooltipContent
-							side="right"
-							>
-								<p>Add File</p>
 							</TooltipContent>
 						</Tooltip>
 					</TooltipProvider>
