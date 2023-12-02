@@ -9,7 +9,7 @@ export const NotificationBox: React.FC<{
 
 	return (
 		<div>
-			this is the notification box
+			N
 		</div>
 	);
 };

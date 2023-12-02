@@ -20,10 +20,10 @@ export const TabsBox = ({setCurrentTab, tabBox, settingTab}: {setCurrentTab: Dis
 				<Button
 					variant={"ghost"}
 					size="sm"
-					className="p-0 flex items-center text-accent"
+					className="p-0 pt-2 flex items-center text-accent"
 					onClick={handlePlus}
 				>
-					<PlusIcon width={20} className="hover:stroke-[3px]" />
+					<PlusIcon width={16} className="stroke-[3px] stroke-muted-foreground transition-colors hover:stroke-accent" />
 				</Button>
 				{tabBox.slice(0, createdTabs).map((tabNm, index) => (
 					<Tab tabNm={"Document " + (settingTab[index]+1)} setCurrentTab={setCurrentTab} name={index} handleX={handleX} key={index} />
