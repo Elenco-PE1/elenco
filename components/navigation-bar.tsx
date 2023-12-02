@@ -65,87 +65,7 @@ export const NavigationBar = ({
 	}
 
 	return (
-		<Menubar>
-			<div className="min-w-[220px] flex gap-4 pl-3">
-				<MenubarMenu>
-					<TooltipProvider>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<Toggle
-									onPressedChange={() =>{
-										setShowFileExplorer(prev => !prev)
-										setShowFileExp(prev => !prev)
-									}}
-								>
-									{!showFileExplorer ? (
-										<div className="group">
-											<DocumentIcon
-												width={24}
-												className="group-hover:hidden my-3 transition-all"
-											/>
-											<DocumentTextIcon
-												width={24}
-												className="hidden group-hover:block my-3 transition-all"
-											/>
-										</div>
-									) : (
-										<div className="group">
-											<DocumentIcon
-												width={24}
-												className="hidden group-hover:block my-3 transition-all"
-											/>
-											<DocumentTextIcon
-												width={24}
-												className="group-hover:hidden my-3 transition-all"
-											/>
-										</div>
-									)}
-								</Toggle>
-							</TooltipTrigger>
-							<TooltipContent>
-								<p>File Explorer</p>
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				</MenubarMenu>
-
-				<MenubarMenu>
-					<TooltipProvider>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<div onClick={handleNewFolder}>
-									<FolderPlusIcon
-										width={24}
-										className="hover:fill-secondary hover:stroke-primary my-3 transition-all hover:cursor-pointer"
-									/>
-								</div>
-							</TooltipTrigger>
-							<TooltipContent>
-								<p>Add Folder</p>
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				</MenubarMenu>
-
-				<MenubarMenu>
-					<TooltipProvider>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<div onClick={handleNewFile}>
-									<DocumentPlusIcon
-										width={24}
-										className="hover:fill-secondary hover:stroke-primary my-3 transition-all hover:cursor-pointer"
-									/>
-								</div>
-							</TooltipTrigger>
-							<TooltipContent>
-								<p>Add File</p>
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				</MenubarMenu>
-			</div>
-
+		<Menubar className="">
 			<div className="w-full h-full">
 				<TabsBox
 					setCurrentTab={setCurrentTab}
@@ -158,6 +78,7 @@ export const NavigationBar = ({
 				<MenubarMenu>
 					{/* organisation switcher */}
 				</MenubarMenu>
+
 				<MenubarMenu>
 					<div className="flex items-center gap-1">
 						<TooltipProvider>
@@ -171,12 +92,12 @@ export const NavigationBar = ({
 										{!showSearch ? (
 											<MagnifyingGlassIcon
 												width={20}
-												className="hover:cursor-pointer transition-all my-3 hover:fill-secondary"
+												className="hover:cursor-pointer transition-all hover:fill-secondary"
 											/>
 										) : (
 											<MagnifyingGlassIcon
 												width={20}
-												className="cursor-pointer transition-all fill-secondary my-3 hover:fill-none"
+												className="cursor-pointer transition-all fill-secondary hover:fill-none"
 											/>
 										)}
 									</Toggle>
@@ -198,7 +119,7 @@ export const NavigationBar = ({
 				</MenubarMenu>
 
 				<MenubarMenu>
-				<NotificationBox
+					<NotificationBox
 						isVisible={isNotificationVisible}
 						setIsVisible={setIsNotificationVisible}
 					/>
@@ -206,33 +127,21 @@ export const NavigationBar = ({
 
 				<MenubarMenu>
 					<Sheet onOpenChange={() => setShowSheet(true)}>
-						{!showSheet && (
-							<SheetTrigger>
-								<TooltipProvider>
-									<Tooltip>
-										<TooltipTrigger asChild>
-											<SquaresPlusIcon
-												width={24}
-												className="my-3 transition-all"
-											/>
-										</TooltipTrigger>
-										<TooltipContent>
-											<p>Team Dashboard</p>
-										</TooltipContent>
-									</Tooltip>
-								</TooltipProvider>
-							</SheetTrigger>
-						)}
-
-						{showSheet && (
-							<SheetClose onClick={() => setShowSheet(false)}>
-								<Squares2X2Icon
-									width={24}
-									className="my-3 transition-all"
-								/>
-							</SheetClose>
-						)}
-
+						<SheetTrigger>
+							<TooltipProvider>
+								<Tooltip>
+									<TooltipTrigger asChild>
+										<SquaresPlusIcon
+											width={24}
+											className="transition-colors hover:fill-accent"
+										/>
+									</TooltipTrigger>
+									<TooltipContent>
+										<p>Team Dashboard</p>
+									</TooltipContent>
+								</Tooltip>
+							</TooltipProvider>
+						</SheetTrigger>
 						<TeamDashboard />
 					</Sheet>
 				</MenubarMenu>
