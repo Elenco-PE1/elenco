@@ -1,10 +1,13 @@
 "use client";
 import { BreadcrumbsBar } from "@/components/breadcrumbs-bar";
-import { Editor } from "@/components/editor";
 import { FileExplorer } from "@/components/file-explorer";
 import { NavigationBar } from "@/components/navigation-bar";
 import { SideNavigationBar } from "@/components/side-navigation-bar";
 import { useState } from "react";
+
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import('@/components/editor'),{ssr:false})
 
 export default function Dashboard() {
 	const rows = 20;
